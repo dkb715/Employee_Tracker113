@@ -2,25 +2,9 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
 const cTable = require('console.table');
-
-var connection = mysql.createConnection({
-    host: "localhost",
-  
-    // Your port
-    port: 8080,  
-    // Your username
-    user: "root",
-    // Your password
-    password: "yourRootPassword",
-    database: "employeetrackerDB"
-  });
-  //used to connect to the sql server and database
-  connection.connect(function(err) {
-      // if (err) throw err;
-      //will prompt the user after the connection is made
-    runPrompt();
-  });
+const DB = require("./DBfolder/index");
   // this will prompt users asking what action they want to take
+  runPrompt()
 function runPrompt() {
 
     inquirer
@@ -77,4 +61,5 @@ function runPrompt() {
             break;
         }
       });
+
   }

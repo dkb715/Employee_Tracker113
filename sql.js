@@ -1,30 +1,40 @@
 const inquirer = require("inquirer");
 module.exports = {
   userChoice: () => {
-    const response = [
+    const questions = [
       {
-        // Prompts the user with a list of choices to respond to
-        name: "tracker",
+        // update the questions
+        name: "options",
         type: "list",
-        message: "What would you like to do?:",
-        choices: [
-          "Add employee",
-          "Add department",
-          "Add role",
-          "Add Manager",
-          "Update employee role",
-          "Remove employee",
-          "Remove Manager",
-          "End"
-        ]
+        message: "What would you like to do?",
+        choices: ["Add Employee", "Add Department", "Add Role","Update Employee Role", "Remove Employee", "End"]
       }
     ];
-    return inquirer.prompt(response);
+    return inquirer.prompt(questions);
+  },
+  updateEmployeeRole: () => {
+    
+    const questions = [
+      {
+        name: "employee_id",
+        type: "list",
+        message: "What is the employee's id?",
+        choices: [1,2,3,4,5,6,7,8]
+        
+      },
+      {
+        name: "role_id",
+        type: "list",
+        message: "What is the role that you which to update ?:",
+        choices:[1, 2, 3]
+      }
+    ];
+    return inquirer.prompt(questions);
   },
   addEmployee: () => {
-    const response = [
+    const questions = [
       {
-        // update the response
+        // update the questions
         name: "first_name",
         type: "input",
         message: "Enter the first name of the employee that you wish to add:",
@@ -73,10 +83,10 @@ module.exports = {
         }
       }
     ];
-    return inquirer.prompt(response);
+    return inquirer.prompt(questions);
   },
   addDepartment: () => {
-    const response = [
+    const questions = [
       {
         name: "name",
         type: "input",
@@ -102,10 +112,10 @@ module.exports = {
         }
       }
     ];
-    return inquirer.prompt(response);
+    return inquirer.prompt(questions);
   },
-  addRole: () => {
-    const response = [
+  addRoles: () => {
+    const questions = [
       {
         name: "role_id",
         type: "input",
@@ -116,23 +126,6 @@ module.exports = {
           } else {
             return "Enter the role id of the employee:";
           }
-        },
-        updateEmployeeRole: () => {
-          const response = [
-            {
-              name: "employee_id",
-              type: "list",
-              message:
-                "What is the id of the employee that you wish to update ?:",
-              choices: [1, 2, 3, 4, 5, 6, 7, 8]
-            },
-            {
-              name: "role_id",
-              type: "input",
-              message: "What is your employees role?"
-            }
-          ];
-          return inquirer.prompt(response);
         }
       },
       {
@@ -171,7 +164,12 @@ module.exports = {
           }
         }
       }
+      
     ];
-    return inquirer.prompt(response);
-  }
+    return inquirer.prompt(questions);
+  },
+
+  
+  
 };
+

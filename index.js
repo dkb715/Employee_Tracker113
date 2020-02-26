@@ -1,8 +1,8 @@
 const mySql = require("mysql");
 const connection = require("./connection");
-const chalk = require("chalk");
 const clear = require("clear");
 const figlet = require("figlet");
+const chalk = require("chalk");
 
 clear();
 
@@ -11,7 +11,7 @@ const inquirer = require("./sql");
 const run = async () => {
   const { options } = await inquirer.userChoice();
 
-  if (options === "Add employee") {
+  if (options === "Add Employee") {
     const {
       first_name,
       last_name,
@@ -23,8 +23,7 @@ const run = async () => {
     console.table(sql);
     const employees = await connection.query("SELECT * FROM employee");
     console.table(employees);
-  } 
-  else if (options === "update employee role") {
+  } else if (options === "Update Employee Role") {
     const {
       employee_id: employee_id,
       role_id: role_id
@@ -37,8 +36,7 @@ const run = async () => {
     connection.query(sql);
     const employees = await connection.query("SELECT * FROM employee");
     console.table(employees);
-  } 
-  else if (options === "add department") {
+  } else if (options === "Add Department") {
     // console.table("returned from addDept", await inquirer.addDepartment())
     const {
       name: department_name,
@@ -49,13 +47,13 @@ const run = async () => {
     const newDepartment = await connection.query(sql2);
     const department = await connection.query("SELECT * FROM department");
     console.table(department);
-  } else if (options === "add role") {
+  } else if (options === "Add Role") {
     const {
       role_id,
       role_title,
       role_salary,
       department_id
-    } = await inquirer.addRole();
+    } = await inquirer.addRoles();
     const sql3 = `INSERT INTO role (id, title, salary, department_id) VALUES ('${role_id}','${role_title}','${role_salary}','${department_id}')`;
     console.table(sql3);
     const newRole = await connection.query(sql3);
@@ -63,7 +61,6 @@ const run = async () => {
     console.table(role);
   }
 };
-
 console.log(
   chalk.cyanBright(
     figlet.textSync("EMPLOYEE DATABASE", { standardLayout: "full" })

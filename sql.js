@@ -1,40 +1,22 @@
 const inquirer = require("inquirer");
+
 module.exports = {
   userChoice: () => {
-    const questions = [
+    const response = [
       {
-        // update the questions
+        // update the response
         name: "options",
         type: "list",
         message: "What would you like to do?",
         choices: ["Add Employee", "Add Department", "Add Role","Update Employee Role", "Remove Employee", "End"]
       }
     ];
-    return inquirer.prompt(questions);
-  },
-  updateEmployeeRole: () => {
-    
-    const questions = [
-      {
-        name: "employee_id",
-        type: "list",
-        message: "What is the employee's id?",
-        choices: [1,2,3,4,5,6,7,8]
-        
-      },
-      {
-        name: "role_id",
-        type: "list",
-        message: "What is the role that you which to update ?:",
-        choices:[1, 2, 3]
-      }
-    ];
-    return inquirer.prompt(questions);
+    return inquirer.prompt(response);
   },
   addEmployee: () => {
-    const questions = [
+    const response = [
       {
-        // update the questions
+        // update the response
         name: "first_name",
         type: "input",
         message: "Enter the first name of the employee that you wish to add:",
@@ -83,10 +65,10 @@ module.exports = {
         }
       }
     ];
-    return inquirer.prompt(questions);
+    return inquirer.prompt(response);
   },
   addDepartment: () => {
-    const questions = [
+    const response = [
       {
         name: "name",
         type: "input",
@@ -112,10 +94,10 @@ module.exports = {
         }
       }
     ];
-    return inquirer.prompt(questions);
+    return inquirer.prompt(response);
   },
-  addRoles: () => {
-    const questions = [
+  addRole: () => {
+    const response = [
       {
         name: "role_id",
         type: "input",
@@ -166,7 +148,26 @@ module.exports = {
       }
       
     ];
-    return inquirer.prompt(questions);
+    return inquirer.prompt(response);
+  },
+  updateEmployeeRole: () => {
+    
+    const response = [
+      {
+        name: "employee_id",
+        type: "list",
+        message: "What is the employee's id?",
+        choices: [1,2,3,4,5,6,7,8]
+        
+      },
+      {
+        name: "role_id",
+        type: "list",
+        message: "What is the role that you which to update ?:",
+        choices:["Sales", "Engineer", "Accountant","Lawyer"]
+      }
+    ];
+    return inquirer.prompt(response);
   },
 
   

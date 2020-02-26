@@ -19,7 +19,6 @@ const run = async () => {
       manager_id
     } = await inquirer.addEmployee();
     const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${first_name}','${last_name}', '${role_id}', '${manager_id}')`;
-    const newEmployee = connection.query(sql);
     console.table(sql);
     const employees = await connection.query("SELECT * FROM employee");
     console.table(employees);
@@ -44,7 +43,6 @@ const run = async () => {
     } = await inquirer.addDepartment();
     const sql2 = `INSERT INTO department (name, id) VALUES ('${department_name}','${department_id}')`;
     console.table(sql2);
-    const newDepartment = await connection.query(sql2);
     const department = await connection.query("SELECT * FROM department");
     console.table(department);
   } else if (options === "Add Role") {
@@ -56,10 +54,22 @@ const run = async () => {
     } = await inquirer.addRole();
     const sql3 = `INSERT INTO role (id, title, salary, department_id) VALUES ('${role_id}','${role_title}','${role_salary}','${department_id}')`;
     console.table(sql3);
-    const newRole = await connection.query(sql3);
     const role = await connection.query("SELECT * FROM role");
     console.table(role);
-  }
+  } else if (options === "Remove Employee") {
+    const {
+      first_name,
+      last_name,
+      role_id,
+      manager_id
+    } = await inquirer.removeEmployee();
+    const sql3 = `DELETE employee (id, title, salary, employee_id) VALUES ('${first_name}','${last_name}', '${role_id}', '${manager_id}')`;
+    console.table(sql3);
+    const role = await connection.query("SELECT * FROM role");
+    console.table(role);
+  }else if (options === "End") {
+    await inquirer.endPrompt();
+console.log("Thank You! Have a great day!")  }
 };
 console.log(
   chalk.cyanBright(

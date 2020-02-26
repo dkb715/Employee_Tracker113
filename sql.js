@@ -8,7 +8,14 @@ module.exports = {
         name: "options",
         type: "list",
         message: "What would you like to do?",
-        choices: ["Add Employee", "Add Department", "Add Role","Update Employee Role", "Remove Employee", "End"]
+        choices: [
+          "Add Employee",
+          "Add Department",
+          "Add Role",
+          "Update Employee Role",
+          "Remove Employee",
+          "End"
+        ]
       }
     ];
     return inquirer.prompt(response);
@@ -146,31 +153,42 @@ module.exports = {
           }
         }
       }
-      
     ];
     return inquirer.prompt(response);
   },
   updateEmployeeRole: () => {
-    
     const response = [
       {
         name: "employee_id",
         type: "list",
         message: "What is the employee's id?",
-        choices: [1,2,3,4,5,6,7,8]
-        
+        choices: [1, 2, 3, 4, 5, 6, 7, 8]
       },
       {
         name: "role_id",
         type: "list",
         message: "What is the role that you which to update ?:",
-        choices:["Sales", "Engineer", "Accountant","Lawyer"]
+        choices: ["Sales", "Engineer", "Accountant", "Lawyer"]
       }
     ];
     return inquirer.prompt(response);
   },
-
-  
-  
+  removeEmployee: () => {
+    const response = [
+      {
+        name: "employee_id",
+        type: "list",
+        message: "What is the employee's id?",
+        choices: [1, 2, 3, 4, 5, 6, 7, 8]
+      },
+      {
+        name: "role_id",
+        input: "list",
+        message: "What is the name of the employee?"
+      }
+    ];
+    return inquirer.prompt(response);
+  },
+  endPrompt: () => {
+  }
 };
-

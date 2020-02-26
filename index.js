@@ -1,5 +1,4 @@
 const mySql = require("mysql");
-const chalk = require("chalk");
 const clear = require("clear");
 const figlet = require("figlet");
 const connection = require("./connection");
@@ -7,19 +6,15 @@ const connection = require("./connection");
 
 clear();
 
-console.log(
-  chalk.magentaBright(figlet.textSync("EMPLOYEES", { standardLayout: "full" }))
-);
-
 const inquirer = require("./sql");
 
 const run = async () => {
-  const { options } = await inquirer.userInput();
+  const { options } = await inquirer.userChoice();
 
   if (options === "add employee") {
     const { first_name, last_name, role_id, manager_id } = await inquirer.addEmployee();
     const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${first_name}','${last_name}', '${role_id}', '${manager_id}')`;
-    const newEmployee = connection.query(sql);
+    // const newEmployee = connection.query(sql);
     console.table(sql);
     const employees = await connection.query("SELECT * FROM employee");
     console.table(employees);

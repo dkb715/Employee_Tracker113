@@ -55,7 +55,7 @@ const run = async () => {
       role_title,
       role_salary,
       department_id
-    } = await inquirer.addRoles();
+    } = await inquirer.addRole();
     const sql3 = `INSERT INTO role (id, title, salary, department_id) VALUES ('${role_id}','${role_title}','${role_salary}','${department_id}')`;
     console.table(sql3);
     const newRole = await connection.query(sql3);

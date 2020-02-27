@@ -4,7 +4,7 @@ module.exports = {
   userChoice: () => {
     const response = [
       {
-        // update the response
+        // prompt user with list of choices 
         name: "options",
         type: "list",
         message: "What would you like to do?",
@@ -20,10 +20,11 @@ module.exports = {
     ];
     return inquirer.prompt(response);
   },
+  //promise function based on user response
   addEmployee: () => {
     const response = [
       {
-        // update the response
+      
         name: "first_name",
         type: "input",
         message: "Enter the first name of the employee that you wish to add:",

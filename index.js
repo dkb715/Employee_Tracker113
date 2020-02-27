@@ -1,3 +1,4 @@
+//depedencies
 const mysql = require("mysql");
 const connection = require("./connection");
 const clear = require("clear");
@@ -5,9 +6,9 @@ const figlet = require("figlet");
 const chalk = require("chalk");
 
 clear();
-
+//require sql file
 const inquirer = require("./sql");
-
+//run an async function with if await to join values
 const run = async () => {
   const { options } = await inquirer.userChoice();
 
@@ -22,6 +23,7 @@ const run = async () => {
     console.table(sql);
     const employees = await connection.query("SELECT * FROM employee");
     console.table(employees);
+  
   } else if (options === "Update Employee Role") {
     const {
       employee_id: employee_id,
@@ -36,7 +38,6 @@ const run = async () => {
     const employees = await connection.query("SELECT * FROM employee");
     console.table(employees);
   } else if (options === "Add Department") {
-    // console.table("returned from addDept", await inquirer.addDepartment())
     const {
       name: department_name,
       id: department_id
@@ -71,6 +72,7 @@ const run = async () => {
     await inquirer.endPrompt();
 console.log("Thank You! Have a great day!")  }
 };
+//employee database highlighted in the terminal
 console.log(
   chalk.cyanBright(
     figlet.textSync("EMPLOYEE DATABASE", { standardLayout: "full" })
